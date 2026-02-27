@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sugar Symphony — Where Every Bite Hits Different</title>
+  <meta name="description"
+    content="Sugar Symphony — Premium luxury handcrafted cakes. Chocolate Truffle, Red Velvet, Black Forest & Custom Cakes.">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    :root {
+      --brown: #3E2723;
+      --brown-light: #5D4037;
+      --red: #B71C1C;
+      --red-dark: #7F0000;
+      --gold: #FFD700;
+      --gold-dim: #BFA100;
+      --cream: #FFF8E1;
+      --white: #fff;
+      --black: #1a1a1a
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--brown);
+      color: var(--cream);
+      overflow-x: hidden
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Playfair Display', serif
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    .section-pad {
+      padding: 100px 5% 80px
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block
+    }
+
+    .section-title-wrap {
+      text-align: center;
+      margin-bottom: 50px
+    }
+
+    .gold-line {
+      width: 80px;
+      height: 4px;
+      background: var(--gold);
+      margin: 12px auto 0;
+      border-radius: 2px;
+      animation: lineGlow 2s infinite alternate
+    }
+
+    @keyframes lineGlow {
+      0% {
+        box-shadow: 0 0 5px var(--gold);
+        width: 80px
+      }
+
+      100% {
+        box-shadow: 0 0 20px var(--gold);
+        width: 120px
+      }
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 18px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all .4s
+    }
+
+    .navbar.scrolled {
+      background: rgba(30, 15, 10, .95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 30px rgba(0, 0, 0, .5);
+      padding: 12px 5%
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--gold);
+      text-shadow: 0 0 10px rgba(255, 215, 0, .3)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none
+    }
+
+    .nav-links a {
+      font-size: .9rem;
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color .3s
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width .3s;
+      box-shadow: 0 0 8px var(--gold)
+    }
+
+    .nav-links a:hover {
+      color: var(--gold)
+    }
+
+    .nav-links a:hover::after {
+      width: 100%
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1001
+    }
+
+    .menu-toggle span {
+      width: 28px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 2px;
+      transition: .3s
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 6px)
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -6px)
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background: linear-gradient(135deg, #1a0e0a, var(--brown), var(--red-dark), #1a0e0a);
+      background-size: 400% 400%;
+      animation: heroGrad 12s ease infinite;
+      overflow: hidden
+    }
+
+    @keyframes heroGrad {
+      0% {
+        background-position: 0% 50%
+      }
+
+      50% {
+        background-position: 100% 50%
+      }
+
+      100% {
+        background-position: 0% 50%
+      }
+    }
+
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: .15;
+      animation: floatUp linear infinite
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0
+      }
+
+      10% {
+        opacity: .2
+      }
+
+      90% {
+        opacity: .1
+      }
+
+      100% {
+        transform: translateY(-10vh) scale(1);
+        opacity: 0
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      color: var(--gold);
+      text-shadow: 0 0 40px rgba(255, 215, 0, .4), 0 4px 20px rgba(0, 0, 0, .6);
+      line-height: 1.1;
+      margin-bottom: 16px;
+      animation: fadeInUp 1s ease
+    }
+
+    .hero .tagline {
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: var(--cream);
+      opacity: .9;
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease .3s both
+    }
+
+    .btn-glow {
+      display: inline-block;
+      padding: 16px 48px;
+      background: linear-gradient(135deg, var(--gold), #FFA000);
+      color: var(--brown);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+      animation: fadeInUp 1s ease .6s both, pulse 2s ease-in-out infinite 1.6s
+    }
+
+    .btn-glow:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(255, 215, 0, .6)
+    }
+
+    .btn-glow::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, .3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width .6s, height .6s
+    }
+
+    .btn-glow:hover::before {
+      width: 300px;
+      height: 300px
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 15px rgba(255, 215, 0, .4)
+      }
+
+      50% {
+        box-shadow: 0 0 35px rgba(255, 215, 0, .7)
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    /* ===== ABOUT ===== */
+    .about {
+      background: linear-gradient(180deg, #2a1810, var(--brown))
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    .about-img {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative
+    }
+
+    .about-img img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      transition: transform .6s
+    }
+
+    .about-img:hover img {
+      transform: scale(1.05)
+    }
+
+    .about-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid var(--gold);
+      border-radius: 20px;
+      opacity: .3
+    }
+
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: rgba(255, 248, 225, .85)
+    }
+
+    .about-text .gold {
+      color: var(--gold);
+      font-weight: 600
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all .8s ease
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    /* ===== SIGNATURE CAKES ===== */
+    .cakes {
+      background: linear-gradient(180deg, var(--brown), #1a0e0a)
+    }
+
+    .cakes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 35px;
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    .cake-card {
+      background: linear-gradient(145deg, rgba(93, 64, 55, .5), rgba(30, 15, 10, .8));
+      border: 1px solid rgba(255, 215, 0, .1);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform .4s, box-shadow .4s, border-color .4s;
+      position: relative
+    }
+
+    .cake-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(255, 215, 0, .15);
+      border-color: var(--gold)
+    }
+
+    .cake-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform .5s
+    }
+
+    .cake-card:hover img {
+      transform: scale(1.08)
+    }
+
+    .cake-info {
+      padding: 24px
+    }
+
+    .cake-info h3 {
+      font-size: 1.3rem;
+      color: var(--gold);
+      margin-bottom: 8px
+    }
+
+    .cake-info p {
+      font-size: .9rem;
+      line-height: 1.6;
+      color: rgba(255, 248, 225, .7);
+      margin-bottom: 16px
+    }
+
+    .cake-price {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: .95rem;
+      margin-bottom: 16px
+    }
+
+    .btn-buy {
+      display: inline-block;
+      padding: 10px 30px;
+      background: transparent;
+      border: 2px solid var(--gold);
+      color: var(--gold);
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .3s;
+      font-size: .9rem
+    }
+
+    .btn-buy:hover {
+      background: var(--gold);
+      color: var(--brown);
+      box-shadow: 0 0 20px rgba(255, 215, 0, .4)
+    }
+
+    /* ===== BEST SELLERS SLIDER ===== */
+    .bestsellers {
+      background: linear-gradient(180deg, #1a0e0a, #2a1810)
+    }
+
+    .slider-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden
+    }
+
+    .slider-track {
+      display: flex;
+      gap: 30px;
+      transition: transform .5s ease;
+      padding: 20px 0
+    }
+
+    .slider-card {
+      min-width: 300px;
+      background: linear-gradient(145deg, rgba(93, 64, 55, .4), rgba(30, 15, 10, .7));
+      border: 1px solid rgba(255, 215, 0, .1);
+      border-radius: 18px;
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: transform .3s, border-color .3s
+    }
+
+    .slider-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-5px)
+    }
+
+    .slider-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover
+    }
+
+    .slider-card .card-body {
+      padding: 20px
+    }
+
+    .slider-card h3 {
+      color: var(--gold);
+      font-size: 1.1rem;
+      margin-bottom: 6px
+    }
+
+    .slider-card p {
+      font-size: .85rem;
+      color: rgba(255, 248, 225, .7)
+    }
+
+    .slider-btns {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px
+    }
+
+    .slider-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      background: transparent;
+      color: var(--gold);
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: all .3s;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .slider-btn:hover {
+      background: var(--gold);
+      color: var(--brown)
+    }
+
+    /* ===== GALLERY ===== */
+    .gallery {
+      background: linear-gradient(180deg, #2a1810, var(--brown))
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      height: 280px;
+      cursor: pointer
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.12)
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(183, 28, 28, .3);
+      opacity: 0;
+      transition: opacity .4s
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1
+    }
+
+    .gallery-item .overlay-text {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      z-index: 2;
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: all .4s
+    }
+
+    .gallery-item:hover .overlay-text {
+      opacity: 1;
+      transform: translateY(0)
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="nav-logo">Sugar Symphony</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#cakes">Cakes</a></li>
+      <li><a href="#bestsellers">Best Sellers</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#offers">Offers</a></li>
+      <li><a href="#contact">Order</a></li>
+    </ul>
+    <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-particles" id="particles"></div>
+    <div class="hero-content">
+      <h1>Sugar Symphony</h1>
+      <p class="tagline">Where Every Bite Hits Different.</p>
+      <a href="#cakes" class="btn-glow">Order Now</a>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about section-pad" id="about">
+    <div class="section-title-wrap">
+      <h2 class="section-title">Our Story</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-img reveal">
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&h=400&fit=crop"
+          alt="Luxury cake crafting">
+      </div>
+      <div class="about-text reveal">
+        <p>At <span class="gold">Sugar Symphony</span>, we don't just bake cakes — we engineer <span class="gold">edible
+            masterpieces</span>. Born from an obsession with perfection, our luxury handcrafted cakes combine the finest
+          <span class="gold">Belgian chocolate</span>, imported vanilla, and artisan techniques passed down through
+          generations.</p>
+        <br>
+        <p>Every creation is a <span class="gold">bold statement</span> — rich, dramatic, and unapologetically
+          indulgent. From our signature <span class="gold">Chocolate Truffle</span> to bespoke celebration cakes, we
+          craft experiences that linger long after the last crumb.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SIGNATURE CAKES ===== -->
+  <section class="cakes section-pad" id="cakes">
+    <div class="section-title-wrap">
+      <h2 class="section-title">Signature Cakes</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="cakes-grid">
+      <div class="cake-card reveal">
+        <img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=400&h=300&fit=crop"
+          alt="Chocolate Truffle Cake">
+        <div class="cake-info">
+          <h3>Chocolate Truffle</h3>
+          <p>Layers of Belgian dark chocolate ganache, truffle cream & gold-dusted finish.</p><span
+            class="cake-price">$49.99</span><br><br><button class="btn-buy">Buy Now</button>
+        </div>
+      </div>
+      <div class="cake-card reveal">
+        <img src="https://images.unsplash.com/photo-1616541823729-00fe0aacd32c?w=400&h=300&fit=crop"
+          alt="Red Velvet Cake">
+        <div class="cake-info">
+          <h3>Red Velvet</h3>
+          <p>Classic crimson layers with silky cream cheese frosting & white chocolate curls.</p><span
+            class="cake-price">$44.99</span><br><br><button class="btn-buy">Buy Now</button>
+        </div>
+      </div>
+      <div class="cake-card reveal">
+        <img src="https://images.unsplash.com/photo-1574085733277-851d9d856a3a?w=400&h=300&fit=crop"
+          alt="Black Forest Cake">
+        <div class="cake-info">
+          <h3>Black Forest</h3>
+          <p>Dark chocolate sponge, Kirsch-soaked cherries & hand-whipped cream.</p><span
+            class="cake-price">$42.99</span><br><br><button class="btn-buy">Buy Now</button>
+        </div>
+      </div>
+      <div class="cake-card reveal">
+        <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12571?w=400&h=300&fit=crop" alt="Custom Cake">
+        <div class="cake-info">
+          <h3>Custom Cakes</h3>
+          <p>Bespoke creations for weddings, birthdays & any grand celebration.</p><span class="cake-price">From
+            $79</span><br><br><button class="btn-buy">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BEST SELLERS ===== -->
+  <section class="bestsellers section-pad" id="bestsellers">
+    <div class="section-title-wrap">
+      <h2 class="section-title">Best Sellers</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="slider-container">
+      <div class="slider-track" id="sliderTrack">
+        <div class="slider-card"><img
+            src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=400&h=280&fit=crop"
+            alt="Salted Caramel">
+          <div class="card-body">
+            <h3>Salted Caramel Dream</h3>
+            <p>Buttery caramel, sea salt & chocolate layers.</p>
+          </div>
+        </div>
+        <div class="slider-card"><img
+            src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=400&h=280&fit=crop" alt="Tiramisu">
+          <div class="card-body">
+            <h3>Tiramisu Royale</h3>
+            <p>Espresso-soaked sponge, mascarpone & cocoa.</p>
+          </div>
+        </div>
+        <div class="slider-card"><img
+            src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=400&h=280&fit=crop" alt="Strawberry">
+          <div class="card-body">
+            <h3>Strawberry Luxe</h3>
+            <p>Fresh strawberries, vanilla cream & meringue.</p>
+          </div>
+        </div>
+        <div class="slider-card"><img
+            src="https://images.unsplash.com/photo-1557979619-445218f326b9?w=400&h=280&fit=crop" alt="Pistachio">
+          <div class="card-body">
+            <h3>Pistachio Velvet</h3>
+            <p>Pistachio cream, rose syrup & gold leaf.</p>
+          </div>
+        </div>
+        <div class="slider-card"><img
+            src="https://images.unsplash.com/photo-1578775887804-699de7086ff9?w=400&h=280&fit=crop" alt="Mango">
+          <div class="card-body">
+            <h3>Mango Tango</h3>
+            <p>Tropical mango mousse & passion fruit glaze.</p>
+          </div>
+        </div>
+      </div>
+      <div class="slider-btns"><button class="slider-btn" id="prevBtn">&#10094;</button><button class="slider-btn"
+          id="nextBtn">&#10095;</button></div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="gallery section-pad" id="gallery">
+    <div class="section-title-wrap">
+      <h2 class="section-title">Gallery</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal"><img
+          src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=500&h=400&fit=crop" alt="Gallery 1"><span
+          class="overlay-text">Artisan Layers</span></div>
+      <div class="gallery-item reveal"><img
+          src="https://images.unsplash.com/photo-1602351447937-745cb720612f?w=500&h=400&fit=crop" alt="Gallery 2"><span
+          class="overlay-text">Golden Touch</span></div>
+      <div class="gallery-item reveal"><img
+          src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?w=500&h=400&fit=crop" alt="Gallery 3"><span
+          class="overlay-text">Frosted Elegance</span></div>
+      <div class="gallery-item reveal"><img
+          src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=500&h=400&fit=crop" alt="Gallery 4"><span
+          class="overlay-text">Celebration Cakes</span></div>
+      <div class="gallery-item reveal"><img
+          src="https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=500&h=400&fit=crop" alt="Gallery 5"><span
+          class="overlay-text">Chocolate Heaven</span></div>
+      <div class="gallery-item reveal"><img
+          src="https://images.unsplash.com/photo-1559620192-032c4bc4674e?w=500&h=400&fit=crop" alt="Gallery 6"><span
+          class="overlay-text">Berry Bliss</span></div>
+    </div>
+  </section>
+
+  <!-- ===== SPECIAL OFFERS ===== -->
+  <section class="offers section-pad" id="offers">
+    <div class="offers-inner">
+      <h2 class="section-title" style="color:var(--gold)">🔥 Flash Sale — Limited Time!</h2>
+      <div class="gold-line" style="margin:12px auto 30px"></div>
+      <p class="offer-text">Get <strong>30% OFF</strong> on all Signature Cakes. Use code: <span
+          class="code-tag">SWEET30</span></p>
+      <div class="countdown" id="countdown">
+        <div class="cd-box"><span id="cd-days">00</span><small>Days</small></div>
+        <div class="cd-box"><span id="cd-hours">00</span><small>Hours</small></div>
+        <div class="cd-box"><span id="cd-mins">00</span><small>Mins</small></div>
+        <div class="cd-box"><span id="cd-secs">00</span><small>Secs</small></div>
+      </div>
+      <a href="#contact" class="btn-glow" style="margin-top:30px">Grab The Deal</a>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT FORM ===== -->
+  <section class="contact section-pad" id="contact">
+    <div class="section-title-wrap">
+      <h2 class="section-title">Place Your Order</h2>
+      <div class="gold-line"></div>
+    </div>
+    <form class="contact-form" id="orderForm">
+      <div class="form-row"><input type="text" placeholder="Full Name" required><input type="email"
+          placeholder="Email Address" required></div>
+      <div class="form-row"><input type="tel" placeholder="Phone Number"><select>
+          <option>Chocolate Truffle</option>
+          <option>Red Velvet</option>
+          <option>Black Forest</option>
+          <option>Custom Cake</option>
+        </select></div>
+      <textarea placeholder="Special instructions or message..." rows="4"></textarea>
+      <button type="submit" class="btn-glow">Submit Order</button>
+    </form>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="footer">
+    <div class="footer-grid">
+      <div>
+        <h3 class="nav-logo" style="font-size:1.8rem;margin-bottom:12px">Sugar Symphony</h3>
+        <p style="color:rgba(255,248,225,.6);max-width:300px">Crafting edible art since 2018. Every cake tells a story
+          of passion and perfection.</p>
+      </div>
+      <div>
+        <h4 style="color:var(--gold);margin-bottom:14px">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#cakes">Our Cakes</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Order Now</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="color:var(--gold);margin-bottom:14px">Follow Us</h4>
+        <div class="social-icons"><a href="#" class="social-icon">&#9733;</a><a href="#"
+            class="social-icon">&#9830;</a><a href="#" class="social-icon">&#9829;</a><a href="#"
+            class="social-icon">&#9824;</a></div>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Sugar Symphony. All Rights Reserved.</div>
+  </footer>
+
+  <!-- ===== REMAINING CSS ===== -->
+  <style>
+    /* ===== OFFERS ===== */
+    .offers {
+      background: linear-gradient(135deg, var(--red-dark), var(--red), #4a0404);
+      text-align: center;
+      position: relative;
+      overflow: hidden
+    }
+
+    .offers::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(255, 215, 0, .08), transparent 60%)
+    }
+
+    .offers-inner {
+      position: relative;
+      z-index: 2
+    }
+
+    .offer-text {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      margin-bottom: 30px;
+      color: var(--cream)
+    }
+
+    .code-tag {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--brown);
+      padding: 4px 16px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap
+    }
+
+    .cd-box {
+      background: rgba(0, 0, 0, .4);
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 18px 22px;
+      min-width: 80px;
+      text-align: center
+    }
+
+    .cd-box span {
+      display: block;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold);
+      font-family: 'Playfair Display', serif
+    }
+
+    .cd-box small {
+      color: var(--cream);
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px
+    }
+
+    /* ===== CONTACT ===== */
+    .contact {
+      background: linear-gradient(180deg, var(--brown), #1a0e0a)
+    }
+
+    .contact-form {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px
+    }
+
+    .form-row {
+      display: flex;
+      gap: 18px
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      padding: 14px 20px;
+      background: rgba(255, 248, 225, .06);
+      border: 1px solid rgba(255, 215, 0, .2);
+      border-radius: 12px;
+      color: var(--cream);
+      font-family: 'Poppins', sans-serif;
+      font-size: .95rem;
+      outline: none;
+      transition: border-color .3s, box-shadow .3s
+    }
+
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 15px rgba(255, 215, 0, .2)
+    }
+
+    .contact-form select option {
+      background: var(--brown);
+      color: var(--cream)
+    }
+
+    .contact-form textarea {
+      resize: vertical
+    }
+
+    .contact-form .btn-glow {
+      align-self: center;
+      border: none
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #120a06;
+      padding: 60px 5% 20px
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(255, 215, 0, .15)
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .footer-links a {
+      color: rgba(255, 248, 225, .6);
+      position: relative;
+      transition: color .3s;
+      display: inline-block
+    }
+
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--gold);
+      transition: width .3s
+    }
+
+    .footer-links a:hover {
+      color: var(--gold)
+    }
+
+    .footer-links a:hover::after {
+      width: 100%
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 14px
+    }
+
+    .social-icon {
+      width: 44px;
+      height: 44px;
+      border: 2px solid rgba(255, 215, 0, .3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all .3s;
+      color: var(--cream)
+    }
+
+    .social-icon:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      box-shadow: 0 0 15px rgba(255, 215, 0, .3);
+      transform: translateY(-3px)
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      color: rgba(255, 248, 225, .4);
+      font-size: .85rem
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:768px) {
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(30, 15, 10, .98);
+        flex-direction: column;
+        padding: 100px 40px;
+        transition: right .4s;
+        gap: 25px
+      }
+
+      .nav-links.open {
+        right: 0
+      }
+
+      .menu-toggle {
+        display: flex
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr
+      }
+
+      .form-row {
+        flex-direction: column;
+        gap: 14px
+      }
+
+      .hero h1 {
+        font-size: clamp(2.4rem, 10vw, 4rem)
+      }
+
+      .slider-card {
+        min-width: 260px
+      }
+    }
+  </style>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    /* === Navbar Scroll === */
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* === Mobile Menu === */
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => { menuToggle.classList.toggle('active'); navLinks.classList.toggle('open') });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menuToggle.classList.remove('active'); navLinks.classList.remove('open') }));
+
+    /* === Particles === */
+    (function () { const c = document.getElementById('particles'); for (let i = 0; i < 30; i++) { const p = document.createElement('div'); p.classList.add('particle'); const s = Math.random() * 6 + 2; p.style.width = s + 'px'; p.style.height = s + 'px'; p.style.left = Math.random() * 100 + '%'; p.style.animationDuration = (Math.random() * 8 + 6) + 's'; p.style.animationDelay = Math.random() * 10 + 's'; c.appendChild(p) } })();
+
+    /* === Scroll Reveal === */
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => { reveals.forEach(el => { const top = el.getBoundingClientRect().top; if (top < window.innerHeight - 80) el.classList.add('active') }) };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+
+    /* === Slider === */
+    const track = document.getElementById('sliderTrack');
+    let sliderPos = 0;
+    const cardW = 330;
+    document.getElementById('nextBtn').addEventListener('click', () => { const max = -(track.children.length * cardW - track.parentElement.offsetWidth); sliderPos = Math.max(sliderPos - cardW, max); track.style.transform = 'translateX(' + sliderPos + 'px)' });
+    document.getElementById('prevBtn').addEventListener('click', () => { sliderPos = Math.min(sliderPos + cardW, 0); track.style.transform = 'translateX(' + sliderPos + 'px)' });
+
+    /* === Countdown === */
+    (function () { const end = new Date(); end.setDate(end.getDate() + 3); end.setHours(23, 59, 59); function tick() { const now = new Date(); let diff = end - now; if (diff < 0) diff = 0; const d = Math.floor(diff / 864e5); const h = Math.floor(diff % 864e5 / 36e5); const m = Math.floor(diff % 36e5 / 6e4); const s = Math.floor(diff % 6e4 / 1e3); document.getElementById('cd-days').textContent = String(d).padStart(2, '0'); document.getElementById('cd-hours').textContent = String(h).padStart(2, '0'); document.getElementById('cd-mins').textContent = String(m).padStart(2, '0'); document.getElementById('cd-secs').textContent = String(s).padStart(2, '0') } tick(); setInterval(tick, 1000) })();
+
+    /* === Form Submit === */
+    document.getElementById('orderForm').addEventListener('submit', function (e) { e.preventDefault(); alert('🎂 Order received! We will contact you shortly.'); this.reset() });
+  </script>
+</body>
+
+</html>
