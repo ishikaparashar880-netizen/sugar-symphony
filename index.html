@@ -253,9 +253,62 @@
     <div class="footer-bottom">&copy; 2026 Sugar Symphony. All Rights Reserved.</div>
   </footer>
 
-  <!-- ===== CHATBOT ===== -->
-  <iframe src="https://www.chatbase.co/chatbot-iframe/-En2QBKDNN7Pur7HBrEFe" width="100%"
-    style="height: 100%; min-height: 700px" frameborder="0"></iframe>
+  <!-- ===== CHATBOT (Chatbase Embed + Identity) ===== -->
+  <script>
+    // Chatbase embed script
+    (function () {
+      if (!window.chatbase || window.chatbase("getState") !== "initialized") {
+        window.chatbase = (...args) => {
+          if (!window.chatbase.q) window.chatbase.q = [];
+          window.chatbase.q.push(args);
+        };
+        window.chatbase = new Proxy(window.chatbase, {
+          get(target, prop) {
+            if (prop === "q") return target.q;
+            return (...args) => target(prop, ...args);
+          }
+        });
+      }
+
+      const onLoad = function () {
+        const script = document.createElement("script");
+        script.src = "https://www.chatbase.co/embed.min.js";
+        script.id = "-En2QBKDNN7Pur7HBrEFe";
+        script.domain = "www.chatbase.co";
+        document.body.appendChild(script);
+      };
+
+      if (document.readyState === "complete") {
+        onLoad();
+      } else {
+        window.addEventListener("load", onLoad);
+      }
+    })();
+
+    // --- Identity Verification (Client Side) ---
+    // To enable user identity, you need a backend (Node.js) that generates a JWT token.
+    // Server-side example (Node.js):
+    //
+    //   const jwt = require('jsonwebtoken');
+    //   const secret = process.env.CHATBOT_IDENTITY_SECRET;
+    //   const user = await getSignedInUser();
+    //   const token = jwt.sign({
+    //       user_id: user.id,
+    //       email: user.email,
+    //       stripe_accounts: user.stripe_accounts,
+    //   }, secret, { expiresIn: '1h' });
+    //
+    // Then pass the token to the client and call:
+    //   window.chatbase('identify', { token });
+    //
+    // Example: Uncomment and replace with your actual token fetch logic:
+    // async function identifyChatbaseUser() {
+    //   const res = await fetch('/api/chatbase-token');
+    //   const { token } = await res.json();
+    //   window.chatbase('identify', { token });
+    // }
+    // identifyChatbaseUser();
+  </script>
 
   <!-- ===== JAVASCRIPT ===== -->
   <script src="script.js"></script>
